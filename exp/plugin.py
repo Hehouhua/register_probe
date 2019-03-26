@@ -1,10 +1,11 @@
 from enum import Enum,unique
+
 @unique
 class UsernameType(Enum):
     Phone = 0
     Email = 1
     Nickname = 2
-        
+
 class plugin:
     timeout = 2
     def __init__(self,custom_log_dir,args): 
@@ -47,11 +48,11 @@ class plugin:
         import re
         if re.match(r"^1[35678]\d{9}$", self.username):
             return UsernameType.Phone
-        if re.match(r'^[0-9a-zA-Z_]{0,19}@[0-9a-zA-Z]{1,13}\.[com,cn,net]{1,3}$',self.username): 
+        if re.match(r'^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$',self.username): 
             return UsernameType.Email
         return UsernameType.Nickname
         
-    #return (True/False,self.host,self.port,self.args,"Any string you want to record")
+    #return (True/False,self.username,"Any string you want to record")
     def probe(self):
         if self.type_of_username() == UsernameType.Phone:
             ret,msg = self.probe_phone()
@@ -63,14 +64,14 @@ class plugin:
         return ret,self.username,msg
 
     def probe_phone(self):
-        return False,"Phone Detection Not Implement Yet."
+        return False,"Phone Detection Not Implemented Yet."
         
     def probe_email(self):
-        return False,"Email Detection Not Implement Yet."
+        return False,"Email Detection Not Implemented Yet."
         
     def probe_nickname(self):
-        return False,"Nickname Detection Not Implement Yet."
+        return False,"Nickname Detection Not Implemented Yet."
 
-    #return (True/False,self.host,self.port,self.args,"Any string you want to record")
+    #return (True/False,self.username,self.password,"Any string you want to record")
     def crack(self):
-        return False,self.username,self.password,'Password Bruteforce not Implement Yet.'
+        return False,self.username,self.password,'Password Bruteforce not Implemented Yet.'

@@ -1,9 +1,10 @@
 from plugin import plugin
 import requests
-import sys
-import socket
 
-class exploit(plugin): 
+class exploit(plugin):
+"""
+微博对注册探测有频率限制，返回类似{'msg': '', 'code': '600001', 'data': {'code': '600001', 'iodata': '', 'msg': '注册过于频繁', 'state': True, 'action': 'io', 'type': 'err', 'id': ''}}
+"""
     def __init__(self,custom_log_dir,args):
         plugin.__init__(self,custom_log_dir,args)
     
@@ -11,8 +12,8 @@ class exploit(plugin):
         headers = {}
         headers["Referer"] = """https://weibo.com/signup/signup.php"""
         r = requests.get(url, headers=headers,timeout=self.timeout)
-        text=r.content.encode("utf-8")
-        print(text)
+        text=r.content
+        #print(text)
         res=eval(text.replace("true","True").replace("false","False"))
         self.log("weibo.response",str(res))
         return res
@@ -46,7 +47,7 @@ class exploit(plugin):
         return ret,msg
         
 def main():
-    print exploit('./',('15222070607',)).probe()
+    print exploit('./',('13603854766',)).probe()
     print exploit('./',('rrrr',)).probe()
     
 if __name__ == '__main__':
