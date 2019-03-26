@@ -1,0 +1,1 @@
+tech	#default username for many nec device,actually,you can only set the password
