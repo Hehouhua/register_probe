@@ -1,10 +1,11 @@
+#coding=utf-8
 from plugin import plugin
 import requests
 
 class exploit(plugin):
-"""
-微博对注册探测有频率限制，返回类似{'msg': '', 'code': '600001', 'data': {'code': '600001', 'iodata': '', 'msg': '注册过于频繁', 'state': True, 'action': 'io', 'type': 'err', 'id': ''}}
-"""
+    """
+    微博对注册探测有频率限制，返回类似{'msg': '', 'code': '600001', 'data': {'code': '600001', 'iodata': '', 'msg': '注册过于频繁', 'state': True, 'action': 'io', 'type': 'err', 'id': ''}}
+    """
     def __init__(self,custom_log_dir,args):
         plugin.__init__(self,custom_log_dir,args)
     

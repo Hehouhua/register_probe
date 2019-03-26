@@ -1,4 +1,4 @@
-# Register Probing
+# Registration Probing
 A framework to probe registration in various applications
 
 Usage:
