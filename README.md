@@ -1,5 +1,5 @@
-# device_scan_framework
-A multithread framework to test a vulnerability in a variety of devices
+# Register Probing
+A framework to probe registration in various applications
 
 Usage:
 python2 exploit.py --help
