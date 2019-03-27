@@ -20,11 +20,11 @@ class exploit(plugin):
         return res
         
     def probe_phone(self):
-        msg = None
         url="""https://www.weibo.com/signup/v5/formcheck?type=mobilesea&zone=0086&value={0}&from=&__rnd=1553587599510""".format(self.username)
         res = self.req(url)
         if "btn_login" in res["data"]["msg"]:
            ret = True
+           msg = "registered"
         elif res["code"] == "600001" and res["data"]["type"]=="err":
            ret = False
            msg = res["data"]["msg"]
@@ -34,11 +34,11 @@ class exploit(plugin):
         return ret,msg
         
     def probe_email(self):
-        msg = None
         url="""https://www.weibo.com/signup/v5/formcheck?type=email&value={0}&__rnd=1553592099837""".format(self.username)
         res = self.req(url)
         if "btn_login" in res["data"]["msg"]:
            ret = True
+           msg = "registered"
         elif res["code"] == "600001" and res["data"]["type"]=="err":
            ret = False
            msg = res["data"]["msg"]
@@ -49,6 +49,7 @@ class exploit(plugin):
         
 def main():
     print exploit('./',('13603854766',)).probe()
+    print exploit('./',('763802378@qq.com',)).probe()
     print exploit('./',('rrrr',)).probe()
     
 if __name__ == '__main__':
